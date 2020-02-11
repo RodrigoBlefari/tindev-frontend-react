@@ -23,7 +23,6 @@ export default function Login({ history }) {
     return (
 
         <div className="login-container">
-            <h1>{username}</h1>
             <form
                 onSubmit={handleSubmit}
             >

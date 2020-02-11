@@ -1,8 +1,10 @@
+
 .main-container {
     max-width: 980px;
     margin: 0 auto;
     padding: 50px 0;
     text-align: center;
+    
 }
 
 .main-container ul{
@@ -52,7 +54,9 @@
 
 .main-container ul li .buttons button {
     height: 50px;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 10px 10px 13px -12px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 13px -12px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 13px -12px rgba(0,0,0,0.75);
     border-radius: 4px;
     border: 0;
     background: #fff;
@@ -71,3 +75,75 @@
     margin-top: 300px;
 }
 
+.match-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.8);
+}
+.match-container .avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    margin: 30px 0;
+}
+
+.match-container strong {
+    font-size: 32px;
+    color: #fff;
+}
+.match-container p {
+    margin-top: 10px;
+    font-size: 20px;
+    line-height: 30px;
+    max-width: 400px;
+    color: rgba(255, 255, 255, 0.8);
+}
+.match-container button {
+    border: 0;
+    background: none;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 18px;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+.user-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    background: #df4623;
+    justify-content: space-around;
+    padding: 20px;
+    box-shadow: 10px 10px 13px -12px rgba(0,0,0,0.75);
+}
+.user-header img{
+    width: 100px;
+    border-radius: 0;
+}
+
+ul li {
+    -webkit-box-shadow: 10px 10px 13px -12px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 13px -12px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 13px -12px rgba(0,0,0,0.75);
+}
+
+.user-header{
+    display: flex;
+    justify-content: center;
+}
+
+.user-header a{
+    border: 1px solid #df4723;
+    display: flex;
+    padding: 3px 14px;
+}

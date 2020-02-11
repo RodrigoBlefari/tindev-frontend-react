@@ -5,16 +5,21 @@ import './Main.css'
 import Logo from '../assets/logo.svg';
 import dislike from '../assets/dislike.svg';
 import like from '../assets/like.svg';
+import itsamatch from '../assets/itsamatch.png'
 
+import io from 'socket.io-client'
 
 import api from '../services/api'
 // import Axios from 'axios'
 
 export default function Main({ match }) {
 
+    const [user, setUser] = useState([]);
     const [users, setUsers] = useState([]);
+    const [matchDev, setMatchDev] = useState(null)
 
     useEffect(() => {
+
         async function loadUsers() {
             const response = await api.get('/devs', {
                 headers: {
@@ -22,9 +27,21 @@ export default function Main({ match }) {
                 }
             })
 
-            setUsers(response.data)
+            setUser(response.data.user)
+            setUsers(response.data.users)
         }
         loadUsers()
+    }, [match.params.id])
+
+    useEffect(() => {
+
+        const socket = io('http://localhost:3333', {
+            query: { user: match.params.id }
+        })
+
+        socket.on('match', dev => {
+            setMatchDev(dev)
+        })
     }, [match.params.id])
 
     async function handleLike(id) {
@@ -49,9 +66,15 @@ export default function Main({ match }) {
     return (
 
         <div className="main-container">
-            <Link to ="/">
-                <img src={Logo} alt="Tindev" />
-            </Link>
+            <div className="user-header">
+                    <img className="user-avatar" src={user.avatar}></img>
+                <div className="user-container">
+                    <strong className="user-name">{user.name}</strong>
+                </div>
+                    <Link to="/">
+                        <img src={Logo} alt="Tindev" />
+                    </Link>
+            </div>
             {users.length > 0 ? (
                 <ul>
                     {users.map(user => (
@@ -75,6 +98,17 @@ export default function Main({ match }) {
             ) : (
                     <div className="empty"> acabou :( </div>
                 )}
+
+            {matchDev && (
+                <div className="match-container">
+                    <img src={itsamatch} alt="Deu Match"></img>
+                    <img className="avatar" src={matchDev.avatar} alt="Deu Match"></img>
+                    <strong>{matchDev.name} </strong>
+                    <p>{matchDev.bio}</p>
+                    <button type="button" onClick={() => setMatchDev(null)} >FECHAR</button>
+
+                </div>
+            )}
         </div>
     )
 }
